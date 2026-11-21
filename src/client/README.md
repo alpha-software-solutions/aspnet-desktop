@@ -12,7 +12,7 @@ It is a **separate client**. It never wraps or replaces the global `fetch` or An
 The quickest start is a template, which sets up the .NET app, the frontend and this package:
 
 ```bash
-dotnet new install AspNetDesktop.Templates
+dotnet new install AlphaSoftware.AspNetDesktop.Templates
 dotnet new aspnetdesktop-vue -o MyApp          # or: aspnetdesktop-angular, aspnetdesktop-react
 ```
 

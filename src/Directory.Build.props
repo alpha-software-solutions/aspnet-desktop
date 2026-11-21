@@ -3,8 +3,8 @@
 
   <!-- Package metadata shared by every AspNetDesktop package. -->
   <PropertyGroup>
-    <Authors>Arman Ossi Loko</Authors>
-    <Copyright>Copyright (c) Arman Ossi Loko</Copyright>
+    <Authors>Alpha Software Solutions</Authors>
+    <Copyright>Copyright (c) Alpha Software Solutions</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/alpha-software-solutions/aspnet-desktop</PackageProjectUrl>
     <RepositoryUrl>https://github.com/alpha-software-solutions/aspnet-desktop</RepositoryUrl>

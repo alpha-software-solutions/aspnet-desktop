@@ -175,7 +175,7 @@ function validationMessages(error: unknown): string[] {
     </section>
 
     <footer class="credit">
-      Built with <a href="https://github.com/alpha-software-solutions/aspnet-desktop" target="_blank" rel="noopener">AspNetDesktop</a> by Arman Ossi Loko
+      Built with <a href="https://github.com/alpha-software-solutions/aspnet-desktop" target="_blank" rel="noopener">AspNetDesktop</a> by Alpha Software Solutions
     </footer>
   </main>
 </template>

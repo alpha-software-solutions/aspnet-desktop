@@ -227,10 +227,10 @@ Issues and pull requests are welcome. [CONTRIBUTING.md](https://github.com/alpha
 
 ## License
 
-[MIT](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE), copyright Arman Ossi Loko.
+[MIT](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE), copyright Alpha Software Solutions.
 
 Apps created from the templates credit the project in their footer:
 
-> Built with [AspNetDesktop](https://github.com/alpha-software-solutions/aspnet-desktop) by Arman Ossi Loko
+> Built with [AspNetDesktop](https://github.com/alpha-software-solutions/aspnet-desktop) by Alpha Software Solutions
 
 Keeping it is appreciated but not required.

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Arman Ossi Loko",
+  "author": "Alpha Software Solutions",
   "classifications": ["Desktop", "Web", "ASP.NET Core", "Vue"],
   "identity": "AlphaSoftware.AspNetDesktop.Vue",
   "groupIdentity": "AlphaSoftware.AspNetDesktop.Vue",
