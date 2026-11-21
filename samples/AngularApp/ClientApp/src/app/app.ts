@@ -1,7 +1,7 @@
 import { Component, type OnInit, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { DesktopHttpClient, getDesktopHostConfig } from 'aspnetdesktop-client/angular';
+import { DesktopHttpClient, getDesktopHostConfig } from '@alpha-software/aspnetdesktop-client/angular';
 import type { AppMetadata, GitHubRepository, Order } from './models';
 
 interface ValidationProblem {

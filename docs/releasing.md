@@ -9,9 +9,11 @@ The repository releases two components, each with its own version, tag, changelo
 | Component | Packages | Changes counted | Tag | Changelog |
 |---|---|---|---|---|
 | `AspNetDesktop` | `AlphaSoftware.AspNetDesktop`, `.Hosting`, `.Windows`, `.Mac`, `.Linux`, `.Templates` (NuGet) | everything outside `src/client` | `AspNetDesktop-v1.2.3` | [`CHANGELOG.md`](../CHANGELOG.md) |
-| `aspnetdesktop-client` | `aspnetdesktop-client` (npm) | `src/client` | `aspnetdesktop-client-v1.2.3` | [`src/client/CHANGELOG.md`](../src/client/CHANGELOG.md) |
+| `aspnetdesktop-client` | `@alpha-software/aspnetdesktop-client` (npm) | `src/client` | `aspnetdesktop-client-v1.2.3` | [`src/client/CHANGELOG.md`](../src/client/CHANGELOG.md) |
 
 A change to the npm client releases only the npm package, and a change to the .NET side (including the samples the templates are built from) releases only the NuGet packages. A commit that touches both counts for both.
+
+The templates package pins the client to the version in `src/client/package.json` at the time of the NuGet release (`^x.y.z`). When both components have a release PR open, merge the client's first and let it publish, so the templates never reference a client version that isn't on npmjs.com yet.
 
 ## How a release happens
 
@@ -43,44 +45,29 @@ gh secret set RELEASE_PLEASE_TOKEN --repo alpha-software-solutions/aspnet-deskto
 
 ## Where packages go
 
-### GitHub Packages (always)
+| Registry | Packages | Credentials |
+|---|---|---|
+| nuget.org | `AlphaSoftware.AspNetDesktop*` (with symbol packages) | [below](#nuget-pick-one) |
+| npmjs.com | `@alpha-software/aspnetdesktop-client` | [below](#npm) |
 
-Nothing to set up: the workflow publishes with its own `GITHUB_TOKEN`. Packages are linked to this repository through `RepositoryUrl` (NuGet) and `repository` (npm), and are public because the repository is.
+Nothing is published to GitHub Packages. Every GitHub Release also carries its packages (`.nupkg`, `.snupkg`, `.tgz`) as downloads.
 
-- **Consumers need a token** with `read:packages`, even for public packages. Once per machine, create a [personal access token (classic)](https://github.com/settings/tokens/new?scopes=read:packages&description=AspNetDesktop%20packages) with that scope and register it:
-  ```bash
-  # On Windows you can leave out --store-password-in-clear-text (the password is encrypted there).
-  dotnet nuget add source https://nuget.pkg.github.com/alpha-software-solutions/index.json --name aspnetdesktop --username <github-user> --password <token> --store-password-in-clear-text
-  npm config set //npm.pkg.github.com/:_authToken <token>
-  ```
-- **npm names must be scoped** on GitHub Packages, so the client is published as `@alpha-software-solutions/aspnetdesktop-client`. Apps install it under its usual name with an alias (`"aspnetdesktop-client": "npm:@alpha-software-solutions/aspnetdesktop-client@^x.y.z"`), so imports don't change. While `PUBLISH_NPMJS` is off, the templates are packed that way, with a `ClientApp/.npmrc` that routes the scope to GitHub Packages.
-- **No symbol server**: GitHub Packages doesn't host `.snupkg` files. They're attached to the GitHub Release, and Source Link still maps to the sources.
-
-### nuget.org and npmjs.com (opt-in)
-
-Turn each registry on with a repository variable once its credentials (below) are in place:
-
-```bash
-gh variable set PUBLISH_NUGET_ORG --repo alpha-software-solutions/aspnet-desktop --body true
-gh variable set PUBLISH_NPMJS --repo alpha-software-solutions/aspnet-desktop --body true
-```
-
-With `PUBLISH_NPMJS` on, the templates reference `aspnetdesktop-client` from npmjs.com again (no alias, no `.npmrc`), so the client has to be on npmjs.com before the next NuGet release goes out. To put releases that already exist on a newly enabled registry, publish them again, the client first:
+Both publish jobs run in the `release` environment, which only accepts deployments from `master`. Versions that are already on a registry are skipped, so to publish a release again (for example after its credentials were missing), run the workflow for its component, the client first:
 
 ```bash
 gh workflow run release.yml --repo alpha-software-solutions/aspnet-desktop -f publish=aspnetdesktop-client
 gh workflow run release.yml --repo alpha-software-solutions/aspnet-desktop -f publish=AspNetDesktop
 ```
 
-Versions that are already on a registry are skipped.
+Releases up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1 were also published to GitHub Packages, under the `armanossiloko` account. Those copies stay there but get no new versions.
 
-These publish jobs run in the `release` environment, which only accepts deployments from `master`.
+### nuget.org
 
 #### NuGet (pick one)
 
 **Trusted publishing (recommended, no long-lived secrets)**
 
-1. On nuget.org, go to your account → **Trusted Publishing** → **Create**, with:
+1. On nuget.org, go to **Trusted Publishing** → **Create**, with the **AlphaSoftware** organization as the policy owner (so new package IDs are created under it) and:
    - Repository owner: `alpha-software-solutions`
    - Repository: `aspnet-desktop`
    - Workflow file: `release.yml`
@@ -100,11 +87,15 @@ gh secret set NUGET_API_KEY --repo alpha-software-solutions/aspnet-desktop --env
 
 When `NUGET_USER` is set, the workflow uses trusted publishing; otherwise it falls back to `NUGET_API_KEY`.
 
+### npmjs.com
+
+The client is published as `@alpha-software/aspnetdesktop-client`, in the [`alpha-software`](https://www.npmjs.com/org/alpha-software) npm organization. Up to 0.1.1 it was the unscoped `aspnetdesktop-client`, which is deprecated.
+
 #### npm
 
-npm trusted publishing can only be configured once the package exists, so the first npmjs.com release needs a token:
+npm trusted publishing can only be configured once the package exists, so the first release of a new package needs a token:
 
-1. On npmjs.com, go to your avatar → **Access Tokens** → **Generate New Token**, and create a token with *Bypass two-factor authentication* enabled, **Packages and scopes** set to *Read and write* for *All packages* (the package doesn't exist yet, so you can't select it), no organizations, and a short expiration. Then:
+1. On npmjs.com, go to your avatar → **Access Tokens** → **Generate New Token**, and create a token with *Bypass two-factor authentication* enabled, **Packages and scopes** set to *Read and write* for the `@alpha-software` scope (the package doesn't exist yet, so you can't select it), and a short expiration. Then:
    ```bash
    gh secret set NPM_TOKEN --repo alpha-software-solutions/aspnet-desktop --env release
    ```

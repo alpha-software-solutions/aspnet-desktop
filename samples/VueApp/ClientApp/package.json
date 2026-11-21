@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "aspnetdesktop-client": "*",
+    "@alpha-software/aspnetdesktop-client": "*",
     "vue": "^3.5.45"
   },
   "devDependencies": {

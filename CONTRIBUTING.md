@@ -24,7 +24,7 @@ src/
   AlphaSoftware.AspNetDesktop.Mac/            net10.0-macos: NSWindow + WKWebView
   AlphaSoftware.AspNetDesktop.Linux/          net10.0: GTK 4 + WebKitGTK 6 (GirCore)
   AlphaSoftware.AspNetDesktop/                metapackage: RunDesktop() picks the adapter for the target framework
-  client/                                     aspnetdesktop-client (core client + Angular, React and Vue integrations)
+  client/                                     @alpha-software/aspnetdesktop-client (core client + Angular, React and Vue integrations)
 samples/
   AngularApp/                                 Angular 22 + [ApiController] + minimal API   (also the aspnetdesktop-angular template)
   ReactApp/                                   React 19 + Vite + the same API               (also the aspnetdesktop-react template)

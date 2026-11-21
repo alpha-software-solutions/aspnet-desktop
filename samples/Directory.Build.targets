@@ -2,7 +2,7 @@
   <!--
     Repository-only wiring for the samples. Not part of the dotnet new templates built from them:
     - build against the source projects instead of the AlphaSoftware.AspNetDesktop package
-    - use the root npm workspace, which links aspnetdesktop-client from src/client
+    - use the root npm workspace, which links @alpha-software/aspnetdesktop-client from src/client
   -->
   <ItemGroup>
     <PackageReference Remove="AlphaSoftware.AspNetDesktop" />
@@ -27,6 +27,6 @@
           Inputs="@(_WorkspaceClientSource)"
           Outputs="$(AlphaSoftwareAspNetDesktopRepoRoot)src/client/dist/index.js;$(AlphaSoftwareAspNetDesktopRepoRoot)src/client/dist/angular/index.js;$(AlphaSoftwareAspNetDesktopRepoRoot)src/client/dist/react/index.js;$(AlphaSoftwareAspNetDesktopRepoRoot)src/client/dist/vue/index.js">
     <Exec Command="npm ci" WorkingDirectory="$(AlphaSoftwareAspNetDesktopRepoRoot)" Condition="!Exists('$(AlphaSoftwareAspNetDesktopRepoRoot)node_modules')" />
-    <Exec Command="npm run build -w aspnetdesktop-client" WorkingDirectory="$(AlphaSoftwareAspNetDesktopRepoRoot)" />
+    <Exec Command="npm run build -w @alpha-software/aspnetdesktop-client" WorkingDirectory="$(AlphaSoftwareAspNetDesktopRepoRoot)" />
   </Target>
 </Project>

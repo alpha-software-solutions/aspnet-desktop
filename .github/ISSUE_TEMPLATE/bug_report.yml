@@ -36,8 +36,8 @@ body:
     id: versions
     attributes:
       label: Versions
-      description: AspNetDesktop, aspnetdesktop-client, .NET SDK, and the WebView version (WebView2 runtime, macOS, or WebKitGTK).
-      placeholder: AspNetDesktop 0.1.0, aspnetdesktop-client 0.1.0, .NET 10.0.100, WebView2 140.0
+      description: AspNetDesktop, @alpha-software/aspnetdesktop-client, .NET SDK, and the WebView version (WebView2 runtime, macOS, or WebKitGTK).
+      placeholder: AspNetDesktop 0.1.0, @alpha-software/aspnetdesktop-client 0.1.0, .NET 10.0.100, WebView2 140.0
     validations:
       required: true
   - type: dropdown

@@ -1,5 +1,5 @@
 /**
- * Angular integration for `aspnetdesktop-client`.
+ * Angular integration for `@alpha-software/aspnetdesktop-client`.
  *
  * `DesktopHttpClient` is a second `HttpClient` whose backend talks to `ipc://localhost` instead of the network.
  * Register it next to (not instead of) `provideHttpClient()`:

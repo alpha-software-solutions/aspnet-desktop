@@ -3,7 +3,7 @@
 [![CI](https://github.com/alpha-software-solutions/aspnet-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/alpha-software-solutions/aspnet-desktop/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/alpha-software-solutions/aspnet-desktop?include_prereleases&logo=github&label=release)](https://github.com/alpha-software-solutions/aspnet-desktop/releases)
 [![NuGet](https://img.shields.io/nuget/v/AlphaSoftware.AspNetDesktop?logo=nuget&label=nuget)](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop)
-[![npm](https://img.shields.io/npm/v/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/aspnetdesktop-client)
+[![npm](https://img.shields.io/npm/v/@alpha-software/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/@alpha-software/aspnetdesktop-client)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE)
 
 Build desktop apps with an **ASP.NET Core backend** and **any JavaScript UI** (Angular, React, Vue, ...), Tauri-style — but with .NET instead of Rust, and with real MVC instead of `invoke('command')`.
@@ -60,7 +60,7 @@ dotnet run                                      # from MyApp, in a second termin
 
 ```bash
 dotnet add package AlphaSoftware.AspNetDesktop
-npm install aspnetdesktop-client                # in your frontend
+npm install @alpha-software/aspnetdesktop-client                # in your frontend
 ```
 
 ```csharp
@@ -85,7 +85,7 @@ The target framework selects the adapter: `net10.0-windows` uses WebView2, `net1
 
 ## Two clients: real HTTP vs the in-process API
 
-The framework never patches `fetch` or Angular's `HttpClient`. Real HTTP stays real; the desktop API gets its own client from [`aspnetdesktop-client`](https://github.com/alpha-software-solutions/aspnet-desktop/tree/master/src/client).
+The framework never patches `fetch` or Angular's `HttpClient`. Real HTTP stays real; the desktop API gets its own client from [`@alpha-software/aspnetdesktop-client`](https://github.com/alpha-software-solutions/aspnet-desktop/tree/master/src/client).
 
 **Angular**
 
@@ -108,7 +108,7 @@ this.desktop.post<Order>('/api/orders', body);
 
 ```tsx
 // main.tsx
-import { DesktopHttpProvider } from 'aspnetdesktop-client/react';
+import { DesktopHttpProvider } from '@alpha-software/aspnetdesktop-client/react';
 
 createRoot(root).render(<DesktopHttpProvider><App /></DesktopHttpProvider>);
 
@@ -122,7 +122,7 @@ await fetch('https://api.weather.example/forecast');   // real HTTP, untouched
 
 ```ts
 // main.ts
-import { createDesktopHttp } from 'aspnetdesktop-client/vue';
+import { createDesktopHttp } from '@alpha-software/aspnetdesktop-client/vue';
 
 createApp(App).use(createDesktopHttp()).mount('#app');
 
@@ -134,7 +134,7 @@ const metadata = await desktop.get<Metadata>('/api/metadata');
 **Svelte, Solid, vanilla, ...**
 
 ```ts
-import { createDesktopHttpClient, DesktopHttpError } from 'aspnetdesktop-client';
+import { createDesktopHttpClient, DesktopHttpError } from '@alpha-software/aspnetdesktop-client';
 
 const desktop = createDesktopHttpClient();
 try {
@@ -209,11 +209,13 @@ If your app is started from another working directory, `AddDesktopHost()` falls 
 | [`AlphaSoftware.AspNetDesktop.Hosting`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Hosting) | `DesktopServer`, options, isolation policy, `AddDesktopHost()`, `CreateClient()`; no UI dependencies |
 | [`AlphaSoftware.AspNetDesktop.Windows`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Windows) / [`.Mac`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Mac) / [`.Linux`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Linux) | Platform adapters |
 | [`AlphaSoftware.AspNetDesktop.Templates`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Templates) | `dotnet new aspnetdesktop-angular`, `aspnetdesktop-react` and `aspnetdesktop-vue` |
-| [`aspnetdesktop-client`](https://www.npmjs.com/package/aspnetdesktop-client) (npm) | `DesktopHttpClient` for Angular, a provider and hook for React, a plugin and composable for Vue, and `createDesktopHttpClient()` for everything else |
+| [`@alpha-software/aspnetdesktop-client`](https://www.npmjs.com/package/@alpha-software/aspnetdesktop-client) (npm) | `DesktopHttpClient` for Angular, a provider and hook for React, a plugin and composable for Vue, and `createDesktopHttpClient()` for everything else |
 
 Until 0.1.3 the NuGet packages were published without the `AlphaSoftware.` prefix (`AspNetDesktop`, `AspNetDesktop.Hosting`, ...). Those packages are deprecated. To move to the new ones, replace the package references, uninstall the old templates (`dotnet new uninstall AspNetDesktop.Templates`), and change `using AspNetDesktop...` to `using AlphaSoftware.AspNetDesktop...`. `AddDesktopHost()` and `RunDesktop()` are in the ASP.NET Core namespaces, so most apps need no other code changes.
 
-Every release is also on [GitHub Packages](https://github.com/orgs/alpha-software-solutions/packages?repo_name=aspnet-desktop), where the client is scoped as `@alpha-software-solutions/aspnetdesktop-client`. Releases from before the project moved to alpha-software-solutions (up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1) stay under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop) as `@armanossiloko/aspnetdesktop-client`.
+Until 0.1.1 the npm client was published as `aspnetdesktop-client`, which is deprecated too. Install `@alpha-software/aspnetdesktop-client` instead and change the imports (`'aspnetdesktop-client/react'` becomes `'@alpha-software/aspnetdesktop-client/react'`, and the same for `/angular`, `/vue` and the core entry point). The API is the same.
+
+Packages are published to nuget.org and npmjs.com only. Releases up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1 were also on GitHub Packages, under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop); those copies stay there but get no new versions.
 
 ## Limitations
 

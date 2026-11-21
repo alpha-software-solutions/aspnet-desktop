@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { DesktopHttpError, getDesktopHostConfig, useDesktopHttpClient } from 'aspnetdesktop-client/vue';
+import { DesktopHttpError, getDesktopHostConfig, useDesktopHttpClient } from '@alpha-software/aspnetdesktop-client/vue';
 import type { AppMetadata, GitHubRepository, Order } from './models';
 
 interface ValidationProblem {

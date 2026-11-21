@@ -2,7 +2,7 @@
 
   <!--
     End-to-end check of the platform adapter for the current OS: opens a real window and system WebView, runs fetch()
-    against app:// and ipc:// from JavaScript (using the real aspnetdesktop-client build), reports the results back over
+    against app:// and ipc:// from JavaScript (using the real @alpha-software/aspnetdesktop-client build), reports the results back over
     ipc:// and exits with 0 (pass) or 1 (fail). Requires `npm run build:client` first.
       Windows/Linux: dotnet run -project tests/AlphaSoftware.AspNetDesktop.SmokeTests   (headless Linux: prefix with xvfb-run -a)
       macOS:         run bin/<config>/net10.0-macos/AlphaSoftware.AspNetDesktop.SmokeTests.app/Contents/MacOS/AlphaSoftware.AspNetDesktop.SmokeTests

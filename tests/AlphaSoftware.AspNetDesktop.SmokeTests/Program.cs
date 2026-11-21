@@ -2,7 +2,7 @@ using System.Text.Json;
 using AlphaSoftware.AspNetDesktop.Hosting;
 
 // Opens a real window and system WebView, lets wwwroot/index.html exercise app:// and ipc:// with fetch() and the
-// aspnetdesktop-client package, and turns the report it posts back into the process exit code.
+// @alpha-software/aspnetdesktop-client package, and turns the report it posts back into the process exit code.
 
 TimeSpan timeout = TimeSpan.FromSeconds(args.Contains("--no-timeout") ? 3600 : 90);
 string expectedPlatform = OperatingSystem.IsWindows() ? "windows" : OperatingSystem.IsMacOS() ? "macos" : "linux";
