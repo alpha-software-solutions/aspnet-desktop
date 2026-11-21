@@ -6,10 +6,10 @@
     <Authors>Arman Ossi Loko</Authors>
     <Copyright>Copyright (c) Arman Ossi Loko</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/armanossiloko/aspnet-desktop</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/armanossiloko/aspnet-desktop</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/nebulora-org/aspnet-desktop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nebulora-org/aspnet-desktop</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>https://github.com/armanossiloko/aspnet-desktop/releases</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/nebulora-org/aspnet-desktop/releases</PackageReleaseNotes>
     <PackageTags>aspnetcore;desktop;webview;webview2;wkwebview;webkitgtk;angular;react;vue;tauri;electron</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
