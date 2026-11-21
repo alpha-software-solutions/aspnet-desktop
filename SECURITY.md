@@ -5,7 +5,7 @@ AspNetDesktop's job is isolation: the ASP.NET Core API must only be reachable by
 ## Reporting a vulnerability
 
 Please **do not** open a public issue. Report privately through GitHub:
-[**Report a vulnerability**](https://github.com/armanossiloko/aspnet-desktop/security/advisories/new).
+[**Report a vulnerability**](https://github.com/nebulora-org/aspnet-desktop/security/advisories/new).
 
 Include the OS and adapter (WebView2 / WKWebView / WebKitGTK), the AspNetDesktop version, and a proof of concept if you have one. You'll get an acknowledgement within a few days. A fix and advisory are coordinated with you before anything is disclosed.
 
