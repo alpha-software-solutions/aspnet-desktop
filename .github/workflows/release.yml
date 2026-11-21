@@ -162,7 +162,7 @@ jobs:
           # Apps generated from the templates install aspnetdesktop-client from npmjs.com once it's published there.
           TEMPLATE_NPM_REGISTRY: ${{ vars.PUBLISH_NPMJS == 'true' && 'npmjs' || 'github' }}
         run: >-
-          dotnet pack AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
+          dotnet pack AlphaSoftware.AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
           -p:MinVerVersionOverride="$VERSION" -p:TemplateNpmRegistry="$TEMPLATE_NPM_REGISTRY"
 
       - name: Check the packages

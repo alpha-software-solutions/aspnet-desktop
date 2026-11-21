@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AlphaSoftware.AspNetDesktop.Hosting/AlphaSoftware.AspNetDesktop.Hosting.csproj" />
+    <Project Path="src/AlphaSoftware.AspNetDesktop.Windows/AlphaSoftware.AspNetDesktop.Windows.csproj" />
+    <Project Path="src/AlphaSoftware.AspNetDesktop.Linux/AlphaSoftware.AspNetDesktop.Linux.csproj" />
+    <Project Path="src/AlphaSoftware.AspNetDesktop.Mac/AlphaSoftware.AspNetDesktop.Mac.csproj" />
+    <Project Path="src/AlphaSoftware.AspNetDesktop/AlphaSoftware.AspNetDesktop.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/AngularApp/AngularApp.csproj" />
+    <Project Path="samples/ReactApp/ReactApp.csproj" />
+    <Project Path="samples/VueApp/VueApp.csproj" />
+  </Folder>
+  <Folder Name="/templates/">
+    <Project Path="templates/AlphaSoftware.AspNetDesktop.Templates/AlphaSoftware.AspNetDesktop.Templates.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AlphaSoftware.AspNetDesktop.Hosting.Tests/AlphaSoftware.AspNetDesktop.Hosting.Tests.csproj" />
+    <Project Path="tests/AlphaSoftware.AspNetDesktop.SmokeTests/AlphaSoftware.AspNetDesktop.SmokeTests.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+</Solution>

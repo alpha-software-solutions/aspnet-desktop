@@ -15,7 +15,7 @@ Include the OS and adapter (WebView2 / WKWebView / WebKitGTK), the AspNetDesktop
 - Bypassing the request token when `RequireRequestToken` is enabled, or leaking it to a non-UI origin
 - Navigation-policy bypasses that load untrusted pages into the app's WebView with access to `ipc://`
 - Anything that makes the host bind a network socket
-- Vulnerabilities in the published packages (`AspNetDesktop*` on NuGet, `aspnetdesktop-client` on npm)
+- Vulnerabilities in the published packages (`AlphaSoftware.AspNetDesktop*` on NuGet, `aspnetdesktop-client` on npm)
 
 ## Out of scope
 

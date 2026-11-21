@@ -57,7 +57,7 @@ while IFS= read -r path; do
     package-lock.json)
       lockfile=true ;;
 
-    tests/AspNetDesktop.SmokeTests/*)
+    tests/AlphaSoftware.AspNetDesktop.SmokeTests/*)
       build=true smoke=true ;;
 
     tests/*)

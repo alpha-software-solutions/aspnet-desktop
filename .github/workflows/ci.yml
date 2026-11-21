@@ -238,10 +238,10 @@ jobs:
 
       # Release builds also run the samples' MSBuild targets that build the frontends into wwwroot.
       - name: Build
-        run: dotnet build AspNetDesktop.slnx -c Release
+        run: dotnet build AlphaSoftware.AspNetDesktop.slnx -c Release
 
       - name: Test
-        run: dotnet test --solution AspNetDesktop.slnx -c Release --no-build
+        run: dotnet test --solution AlphaSoftware.AspNetDesktop.slnx -c Release --no-build
 
   smoke:
     name: WebView smoke test (${{ matrix.name }})
@@ -255,15 +255,15 @@ jobs:
         include:
           - name: Windows
             os: windows-latest
-            run: tests/AspNetDesktop.SmokeTests/bin/Release/net10.0-windows/AspNetDesktop.SmokeTests.exe
+            run: tests/AlphaSoftware.AspNetDesktop.SmokeTests/bin/Release/net10.0-windows/AlphaSoftware.AspNetDesktop.SmokeTests.exe
           - name: Linux
             os: ubuntu-24.04
-            run: xvfb-run -a dotnet tests/AspNetDesktop.SmokeTests/bin/Release/net10.0/AspNetDesktop.SmokeTests.dll
+            run: xvfb-run -a dotnet tests/AlphaSoftware.AspNetDesktop.SmokeTests/bin/Release/net10.0/AlphaSoftware.AspNetDesktop.SmokeTests.dll
           # Run the executable inside the final (universal) .app bundle: `dotnet run` would hand the bundle to `open`
           # and not wait, and the per-RID bundles under osx-*/ are incomplete intermediates.
           - name: macOS
             os: xcode-27
-            run: "\"$(find tests/AspNetDesktop.SmokeTests/bin/Release/net10.0-macos -maxdepth 1 -name '*.app' | head -n 1)/Contents/MacOS/AspNetDesktop.SmokeTests\""
+            run: "\"$(find tests/AlphaSoftware.AspNetDesktop.SmokeTests/bin/Release/net10.0-macos -maxdepth 1 -name '*.app' | head -n 1)/Contents/MacOS/AlphaSoftware.AspNetDesktop.SmokeTests\""
     steps:
       - uses: actions/checkout@v7
         with:
@@ -299,7 +299,7 @@ jobs:
       - run: npm run build:client
 
       - name: Build smoke test
-        run: dotnet build tests/AspNetDesktop.SmokeTests -c Release
+        run: dotnet build tests/AlphaSoftware.AspNetDesktop.SmokeTests -c Release
 
       - name: Run smoke test
         shell: bash
@@ -317,7 +317,7 @@ jobs:
 
       - name: Show the app bundle layout
         if: failure() && runner.os == 'macOS'
-        run: find tests/AspNetDesktop.SmokeTests/bin/Release -path '*.app/*' -not -name '*.dll' -not -name '*.dylib' | head -n 100
+        run: find tests/AlphaSoftware.AspNetDesktop.SmokeTests/bin/Release -path '*.app/*' -not -name '*.dll' -not -name '*.dylib' | head -n 100
 
   pack:
     name: Pack & template check
@@ -333,7 +333,7 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      # The AspNetDesktop metapackage includes the net10.0-macos target.
+      # The AlphaSoftware.AspNetDesktop metapackage includes the net10.0-macos target.
       - name: Install macOS workload
         run: dotnet workload install macos
 
@@ -345,7 +345,7 @@ jobs:
       - run: npm ci
 
       - name: Pack NuGet packages
-        run: dotnet pack AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
+        run: dotnet pack AlphaSoftware.AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
 
       - name: Pack npm package
         run: npm pack -w aspnetdesktop-client --pack-destination artifacts
@@ -358,7 +358,7 @@ jobs:
           work="$RUNNER_TEMP/template-check"
           hive="$RUNNER_TEMP/template-hive"
           mkdir -p "$work"
-          dotnet new install "$(ls "$artifacts"/AspNetDesktop.Templates.*.nupkg)" --debug:custom-hive "$hive"
+          dotnet new install "$(ls "$artifacts"/AlphaSoftware.AspNetDesktop.Templates.*.nupkg)" --debug:custom-hive "$hive"
           cat > "$work/nuget.config" <<EOF
           <?xml version="1.0" encoding="utf-8"?>
           <configuration>

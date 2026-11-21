@@ -8,7 +8,7 @@
 <TargetFramework Condition="'$(TargetFramework)' == ''">net10.0</TargetFramework>
 ```
 
-To use your own adapter, register an `IDesktopPlatform` in DI or call `app.RunDesktop(platform)` from `AspNetDesktop.Hosting`.
+To use your own adapter, register an `IDesktopPlatform` in DI or call `app.RunDesktop(platform)` from `AlphaSoftware.AspNetDesktop.Hosting`.
 
 ## Windows: WebView2 (`net10.0-windows`)
 
@@ -17,7 +17,7 @@ To use your own adapter, register an `IDesktopPlatform` in DI or call `app.RunDe
 - **Schemes**: registered through `CoreWebView2CustomSchemeRegistration` before the environment is created (`TreatAsSecure`, `HasAuthorityComponent`, `AllowedOrigins` = the `ipc://` allow-list). Requests are answered from `WebResourceRequested` with a deferral, so ASP.NET Core runs on the thread pool.
 - **Profile**: `Desktop:UserDataFolder`, default `%LOCALAPPDATA%\<ApplicationName>\WebView`.
 - **App icon**: the window uses the executable's icon (`<ApplicationIcon>` in your project).
-- The `AspNetDesktop.Windows` package drops WebView2's WPF assembly reference unless your project sets `UseWPF`, avoiding MSB3277 warnings in WinForms-only apps.
+- The `AlphaSoftware.AspNetDesktop.Windows` package drops WebView2's WPF assembly reference unless your project sets `UseWPF`, avoiding MSB3277 warnings in WinForms-only apps.
 
 ## macOS: WKWebView (`net10.0-macos`)
 
