@@ -43,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(AspNetDesktopRepoRoot)README.md" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="$(AspNetDesktopRepoRoot)LICENSE" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="$(AspNetDesktopRepoRoot)assets/icon.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(AlphaSoftwareAspNetDesktopRepoRoot)README.md" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(AlphaSoftwareAspNetDesktopRepoRoot)LICENSE" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(AlphaSoftwareAspNetDesktopRepoRoot)assets/icon.png" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 </Project>

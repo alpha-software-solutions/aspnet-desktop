@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <!-- Without the macOS workload, build an empty placeholder so solution builds keep working. -->
-  <PropertyGroup Condition="'$(AspNetDesktopBuildMac)' != 'true'">
+  <PropertyGroup Condition="'$(AlphaSoftwareAspNetDesktopBuildMac)' != 'true'">
     <TargetFramework>net10.0</TargetFramework>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <IsPackable>false</IsPackable>
@@ -29,7 +29,7 @@
     <None Include="buildTransitive\AlphaSoftware.AspNetDesktop.Mac.targets" Pack="true" PackagePath="buildTransitive\" />
   </ItemGroup>
 
-  <Target Name="AspNetDesktopWarnMacSkipped" BeforeTargets="Build" Condition="'$(AspNetDesktopBuildMac)' != 'true'">
+  <Target Name="AlphaSoftwareAspNetDesktopWarnMacSkipped" BeforeTargets="Build" Condition="'$(AlphaSoftwareAspNetDesktopBuildMac)' != 'true'">
     <Message Importance="high" Text="AlphaSoftware.AspNetDesktop.Mac skipped: the 'macos' workload is not installed (dotnet workload install macos)." />
   </Target>
 

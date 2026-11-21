@@ -238,10 +238,10 @@ jobs:
 
       # Release builds also run the samples' MSBuild targets that build the frontends into wwwroot.
       - name: Build
-        run: dotnet build AspNetDesktop.slnx -c Release
+        run: dotnet build AlphaSoftware.AspNetDesktop.slnx -c Release
 
       - name: Test
-        run: dotnet test --solution AspNetDesktop.slnx -c Release --no-build
+        run: dotnet test --solution AlphaSoftware.AspNetDesktop.slnx -c Release --no-build
 
   smoke:
     name: WebView smoke test (${{ matrix.name }})
@@ -345,7 +345,7 @@ jobs:
       - run: npm ci
 
       - name: Pack NuGet packages
-        run: dotnet pack AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
+        run: dotnet pack AlphaSoftware.AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
 
       - name: Pack npm package
         run: npm pack -w aspnetdesktop-client --pack-destination artifacts

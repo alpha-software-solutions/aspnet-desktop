@@ -4,7 +4,7 @@
 
 ## How was it tested?
 
-- [ ] `dotnet test --solution AspNetDesktop.slnx`
+- [ ] `dotnet test --solution AlphaSoftware.AspNetDesktop.slnx`
 - [ ] `npm run test:client`
 - [ ] WebView smoke test (`dotnet run --project tests/AlphaSoftware.AspNetDesktop.SmokeTests`) on: <!-- Windows / macOS / Linux -->
 - [ ] Sample app checked manually (if UI or adapter behavior changed)

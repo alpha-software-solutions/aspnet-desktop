@@ -29,9 +29,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <TemplateSource Include="Angular" SourceDir="$(AspNetDesktopRepoRoot)samples/AngularApp/" />
-    <TemplateSource Include="React" SourceDir="$(AspNetDesktopRepoRoot)samples/ReactApp/" />
-    <TemplateSource Include="Vue" SourceDir="$(AspNetDesktopRepoRoot)samples/VueApp/" />
+    <TemplateSource Include="Angular" SourceDir="$(AlphaSoftwareAspNetDesktopRepoRoot)samples/AngularApp/" />
+    <TemplateSource Include="React" SourceDir="$(AlphaSoftwareAspNetDesktopRepoRoot)samples/ReactApp/" />
+    <TemplateSource Include="Vue" SourceDir="$(AlphaSoftwareAspNetDesktopRepoRoot)samples/VueApp/" />
   </ItemGroup>
 
   <UsingTask TaskName="StageTemplateFile" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
@@ -70,7 +70,7 @@
     <Error Condition="'$(TemplateNpmRegistry)' != 'npmjs' and '$(TemplateNpmRegistry)' != 'github'" Text="TemplateNpmRegistry must be 'npmjs' or 'github', not '$(TemplateNpmRegistry)'." />
     <!-- The npm client has its own version (release-please bumps src/client/package.json); use the current one. -->
     <PropertyGroup>
-      <_ClientPackageJson>$([System.IO.File]::ReadAllText('$(AspNetDesktopRepoRoot)src/client/package.json'))</_ClientPackageJson>
+      <_ClientPackageJson>$([System.IO.File]::ReadAllText('$(AlphaSoftwareAspNetDesktopRepoRoot)src/client/package.json'))</_ClientPackageJson>
       <_TemplateClientVersion>$([System.Text.RegularExpressions.Regex]::Match($(_ClientPackageJson), '(?&lt;="version":\s*")[^"]+').Value)</_TemplateClientVersion>
       <_TemplateClientDependency>^$(_TemplateClientVersion)</_TemplateClientDependency>
       <_TemplateClientDependency Condition="'$(TemplateNpmRegistry)' == 'github'">npm:%40$(GitHubPackagesOwner)/aspnetdesktop-client@^$(_TemplateClientVersion)</_TemplateClientDependency>

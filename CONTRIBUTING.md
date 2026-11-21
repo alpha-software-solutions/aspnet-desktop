@@ -12,7 +12,7 @@ Thanks for helping! Issues, ideas and pull requests are all welcome. Please foll
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download) (see `global.json`)
 - Node.js 22+ and npm
-- For the macOS adapter: `dotnet workload install macos` (and Xcode on a Mac to run it). Without the workload the Mac project is skipped automatically (`-p:AspNetDesktopBuildMac=false|true` to force).
+- For the macOS adapter: `dotnet workload install macos` (and Xcode on a Mac to run it). Without the workload the Mac project is skipped automatically (`-p:AlphaSoftwareAspNetDesktopBuildMac=false|true` to force).
 - For running on Linux: GTK 4 and WebKitGTK 6 (`sudo apt install libgtk-4-1 libwebkitgtk-6.0-4`). See [docs/platforms.md](docs/platforms.md).
 
 ## Repository layout
@@ -44,8 +44,8 @@ npm ci                         # npm workspaces: the client package and the samp
 npm run build:client
 npm run test:client            # vitest: vanilla, Angular, React and Vue clients
 
-dotnet build AspNetDesktop.slnx
-dotnet test --solution AspNetDesktop.slnx    # Hosting tests: no WebView needed
+dotnet build AlphaSoftware.AspNetDesktop.slnx
+dotnet test --solution AlphaSoftware.AspNetDesktop.slnx    # Hosting tests: no WebView needed
 ```
 
 ### End-to-end smoke test

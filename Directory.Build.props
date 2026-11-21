@@ -7,7 +7,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <!-- Lets Linux/macOS build the net10.0-windows adapter (and the metapackage's Windows target). -->
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <AspNetDesktopRepoRoot>$(MSBuildThisFileDirectory)</AspNetDesktopRepoRoot>
+    <AlphaSoftwareAspNetDesktopRepoRoot>$(MSBuildThisFileDirectory)</AlphaSoftwareAspNetDesktopRepoRoot>
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 </Project>

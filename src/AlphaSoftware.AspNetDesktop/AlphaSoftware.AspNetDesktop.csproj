@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net10.0;net10.0-windows</TargetFrameworks>
-    <TargetFrameworks Condition="'$(AspNetDesktopBuildMac)' == 'true'">$(TargetFrameworks);net10.0-macos</TargetFrameworks>
+    <TargetFrameworks Condition="'$(AlphaSoftwareAspNetDesktopBuildMac)' == 'true'">$(TargetFrameworks);net10.0-macos</TargetFrameworks>
     <RootNamespace>AlphaSoftware.AspNetDesktop</RootNamespace>
     <Description>Build desktop apps with an ASP.NET Core backend and any JavaScript UI. Hosts MVC and minimal APIs in-process behind the WebView's app:// and ipc:// schemes: no Kestrel, no TCP port. Pulls in the adapter for the target OS (WebView2, WKWebView or WebKitGTK).</Description>
   </PropertyGroup>
