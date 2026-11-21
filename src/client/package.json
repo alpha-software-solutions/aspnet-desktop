@@ -1,6 +1,6 @@
 {
   "name": "@alpha-software/aspnetdesktop-client",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "DesktopHttpClient: isolated, HTTP-shaped calls from the WebView UI to the in-process ASP.NET Core API over ipc://localhost, with Angular, React and Vue integrations. Never touches the global fetch or Angular's HttpClient.",
   "license": "MIT",
   "author": "Alpha Software Solutions",
