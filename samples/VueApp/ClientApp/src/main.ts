@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { createDesktopHttp } from 'aspnetdesktop-client/vue';
+import { createDesktopHttp } from '@alpha-software/aspnetdesktop-client/vue';
 import App from './App.vue';
 import './styles.css';
 

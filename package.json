@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "prepare": "husky",
-    "build:client": "npm run build -w aspnetdesktop-client",
-    "test:client": "npm test -w aspnetdesktop-client",
+    "build:client": "npm run build -w @alpha-software/aspnetdesktop-client",
+    "test:client": "npm test -w @alpha-software/aspnetdesktop-client",
     "build:samples": "npm run build:client && npm run build -w angular-app-client -w react-app-client -w vue-app-client",
     "start:angular": "npm start -w angular-app-client",
     "start:react": "npm start -w react-app-client",

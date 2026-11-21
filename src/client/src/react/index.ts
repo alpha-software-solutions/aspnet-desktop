@@ -1,5 +1,5 @@
 /**
- * React integration for `aspnetdesktop-client`.
+ * React integration for `@alpha-software/aspnetdesktop-client`.
  *
  * `useDesktopHttpClient()` returns the promise-based client for the in-process API over `ipc://localhost`.
  * Wrap the app in `DesktopHttpProvider` to configure it once, or to hand components a fake in tests:

@@ -1,4 +1,4 @@
-> **Design document.** This is the original plan AspNetDesktop was built from, kept for context. Where the implementation differs, the code and the [README](../README.md) win. Notable differences: the npm package is `aspnetdesktop-client` (not `@aspnetdesktop/client`), the NuGet packages, projects and namespaces carry the `AlphaSoftware.` prefix (`AlphaSoftware.AspNetDesktop.Hosting`, ...), and `dotnet new` templates ship as `AlphaSoftware.AspNetDesktop.Templates`.
+> **Design document.** This is the original plan AspNetDesktop was built from, kept for context. Where the implementation differs, the code and the [README](../README.md) win. Notable differences: the npm package is `@alpha-software/aspnetdesktop-client` (not `@aspnetdesktop/client`), the NuGet packages, projects and namespaces carry the `AlphaSoftware.` prefix (`AlphaSoftware.AspNetDesktop.Hosting`, ...), and `dotnet new` templates ship as `AlphaSoftware.AspNetDesktop.Templates`.
 
 # AspNetDesktop: isolated ASP.NET + JS desktop host
 

@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { DesktopHttpProvider } from 'aspnetdesktop-client/react';
+import { DesktopHttpProvider } from '@alpha-software/aspnetdesktop-client/react';
 import { App } from './App';
 import './styles.css';
 

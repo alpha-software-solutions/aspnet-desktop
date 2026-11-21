@@ -1,5 +1,5 @@
 import { type FormEvent, useEffect, useState } from 'react';
-import { DesktopHttpError, getDesktopHostConfig, useDesktopHttpClient } from 'aspnetdesktop-client/react';
+import { DesktopHttpError, getDesktopHostConfig, useDesktopHttpClient } from '@alpha-software/aspnetdesktop-client/react';
 import { type AppMetadata, type GitHubRepository, type Order } from './models';
 
 interface ValidationProblem {

@@ -1,5 +1,5 @@
 /**
- * aspnetdesktop-client
+ * @alpha-software/aspnetdesktop-client
  *
  * `DesktopHttpClient` sends HTTP-shaped requests to the in-process ASP.NET Core API over `ipc://localhost`.
  * It is a separate client: it never wraps or replaces the global `fetch` or Angular's `HttpClient`, which keep

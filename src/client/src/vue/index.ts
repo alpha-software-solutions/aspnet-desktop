@@ -1,5 +1,5 @@
 /**
- * Vue integration for `aspnetdesktop-client`.
+ * Vue integration for `@alpha-software/aspnetdesktop-client`.
  *
  * `createDesktopHttp()` is a plugin that provides the promise-based client for the in-process API over
  * `ipc://localhost`; components get it from `useDesktopHttpClient()` (or `this.$desktop` in the Options API):

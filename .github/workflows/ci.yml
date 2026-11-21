@@ -186,14 +186,14 @@ jobs:
 
       - run: npm ci
       - run: npm run build:client
-      - run: npm run typecheck -w aspnetdesktop-client
+      - run: npm run typecheck -w @alpha-software/aspnetdesktop-client
       - run: npm run test:client
 
       - name: Build sample frontends
         run: npm run build -w angular-app-client -w react-app-client -w vue-app-client
 
       - name: Check package contents
-        run: npm pack -w aspnetdesktop-client --dry-run
+        run: npm pack -w @alpha-software/aspnetdesktop-client --dry-run
 
   build:
     name: Build & test (${{ matrix.name }})
@@ -348,7 +348,7 @@ jobs:
         run: dotnet pack AlphaSoftware.AspNetDesktop.slnx -c Release -o artifacts -p:SkipClientBuild=true
 
       - name: Pack npm package
-        run: npm pack -w aspnetdesktop-client --pack-destination artifacts
+        run: npm pack -w @alpha-software/aspnetdesktop-client --pack-destination artifacts
 
       - name: Instantiate and build the templates
         shell: bash

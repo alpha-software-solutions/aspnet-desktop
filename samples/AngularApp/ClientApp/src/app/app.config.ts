@@ -1,6 +1,6 @@
 import { type ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
-import { provideDesktopHttpClient } from 'aspnetdesktop-client/angular';
+import { provideDesktopHttpClient } from '@alpha-software/aspnetdesktop-client/angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [

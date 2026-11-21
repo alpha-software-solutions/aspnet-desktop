@@ -1,6 +1,6 @@
-# aspnetdesktop-client
+# @alpha-software/aspnetdesktop-client
 
-[![npm](https://img.shields.io/npm/v/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/aspnetdesktop-client)
+[![npm](https://img.shields.io/npm/v/@alpha-software/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/@alpha-software/aspnetdesktop-client)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE)
 
 The frontend half of [AspNetDesktop](https://github.com/alpha-software-solutions/aspnet-desktop#readme), which runs an ASP.NET Core backend in-process behind a system WebView, with no port. `DesktopHttpClient` makes HTTP-shaped calls from the UI to that backend over `ipc://localhost`.
@@ -19,22 +19,22 @@ dotnet new aspnetdesktop-vue -o MyApp          # or: aspnetdesktop-angular, aspn
 To add it to an existing frontend:
 
 ```bash
-npm install aspnetdesktop-client
+npm install @alpha-software/aspnetdesktop-client
 ```
 
 | Import | For |
 |---|---|
-| `aspnetdesktop-client` | Any framework or none: `createDesktopHttpClient()` |
-| `aspnetdesktop-client/angular` | Angular: `DesktopHttpClient` (an `HttpClient`) and `provideDesktopHttpClient()` |
-| `aspnetdesktop-client/react` | React 18+: `DesktopHttpProvider` and `useDesktopHttpClient()` |
-| `aspnetdesktop-client/vue` | Vue 3.3+: the `createDesktopHttp()` plugin and `useDesktopHttpClient()` |
+| `@alpha-software/aspnetdesktop-client` | Any framework or none: `createDesktopHttpClient()` |
+| `@alpha-software/aspnetdesktop-client/angular` | Angular: `DesktopHttpClient` (an `HttpClient`) and `provideDesktopHttpClient()` |
+| `@alpha-software/aspnetdesktop-client/react` | React 18+: `DesktopHttpProvider` and `useDesktopHttpClient()` |
+| `@alpha-software/aspnetdesktop-client/vue` | Vue 3.3+: the `createDesktopHttp()` plugin and `useDesktopHttpClient()` |
 
 Each framework is an optional peer dependency; install only the one you use.
 
 ## Vanilla (and Svelte, Solid, ...)
 
 ```ts
-import { createDesktopHttpClient, DesktopHttpError } from 'aspnetdesktop-client';
+import { createDesktopHttpClient, DesktopHttpError } from '@alpha-software/aspnetdesktop-client';
 
 const desktop = createDesktopHttpClient();
 
@@ -62,7 +62,7 @@ Objects are sent as JSON; strings, `FormData`, `Blob`, `URLSearchParams` and buf
 ## React
 
 ```tsx
-import { DesktopHttpProvider, useDesktopHttpClient } from 'aspnetdesktop-client/react';
+import { DesktopHttpProvider, useDesktopHttpClient } from '@alpha-software/aspnetdesktop-client/react';
 
 createRoot(document.getElementById('root')!).render(
   <DesktopHttpProvider>
@@ -86,13 +86,13 @@ function Orders() {
 - `DesktopHttpProvider` takes `options` (`baseUrl`, `headers`, `fetch`) or a ready-made `client`, e.g. a fake in tests.
 - Without a provider, `useDesktopHttpClient()` returns a shared default client.
 - The client's promises work as-is as a TanStack Query `queryFn`: `({ signal }) => desktop.get('/api/orders', { signal })`.
-- `aspnetdesktop-client/react` re-exports the core API (`DesktopHttpError`, `getDesktopHostConfig`, ...).
+- `@alpha-software/aspnetdesktop-client/react` re-exports the core API (`DesktopHttpError`, `getDesktopHostConfig`, ...).
 
 ## Vue
 
 ```ts
 // main.ts
-import { createDesktopHttp } from 'aspnetdesktop-client/vue';
+import { createDesktopHttp } from '@alpha-software/aspnetdesktop-client/vue';
 
 createApp(App).use(createDesktopHttp()).mount('#app');
 ```
@@ -100,7 +100,7 @@ createApp(App).use(createDesktopHttp()).mount('#app');
 ```vue
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useDesktopHttpClient } from 'aspnetdesktop-client/vue';
+import { useDesktopHttpClient } from '@alpha-software/aspnetdesktop-client/vue';
 
 const desktop = useDesktopHttpClient();
 const orders = ref<Order[]>([]);
@@ -111,13 +111,13 @@ onMounted(async () => (orders.value = await desktop.get<Order[]>('/api/orders'))
 - `createDesktopHttp()` takes the client options (`baseUrl`, `headers`, `fetch`) or a ready-made `client`.
 - The plugin exposes the client as `plugin.client` for code outside components, such as Pinia stores and router guards, and as `this.$desktop` in the Options API.
 - Without the plugin, `useDesktopHttpClient()` returns a shared default client.
-- `aspnetdesktop-client/vue` re-exports the core API.
+- `@alpha-software/aspnetdesktop-client/vue` re-exports the core API.
 
 ## Angular
 
 ```ts
 import { provideHttpClient } from '@angular/common/http';
-import { DesktopHttpClient, provideDesktopHttpClient } from 'aspnetdesktop-client/angular';
+import { DesktopHttpClient, provideDesktopHttpClient } from '@alpha-software/aspnetdesktop-client/angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideHttpClient(), provideDesktopHttpClient()],
