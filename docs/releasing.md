@@ -38,7 +38,7 @@ If anything besides versions and changelogs is pushed to a release PR, CI checks
 To have the client release PR's run start without waiting for approval, give release-please a token whose PRs trigger workflows normally. Create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) for this repository with **Contents**, **Pull requests** and **Issues** set to read and write, then:
 
 ```bash
-gh secret set RELEASE_PLEASE_TOKEN --repo nebulora-org/aspnet-desktop
+gh secret set RELEASE_PLEASE_TOKEN --repo alpha-software-solutions/aspnet-desktop
 ```
 
 ## Where packages go
@@ -50,10 +50,10 @@ Nothing to set up: the workflow publishes with its own `GITHUB_TOKEN`. Packages 
 - **Consumers need a token** with `read:packages`, even for public packages. Once per machine, create a [personal access token (classic)](https://github.com/settings/tokens/new?scopes=read:packages&description=AspNetDesktop%20packages) with that scope and register it:
   ```bash
   # On Windows you can leave out --store-password-in-clear-text (the password is encrypted there).
-  dotnet nuget add source https://nuget.pkg.github.com/nebulora-org/index.json --name aspnetdesktop --username <github-user> --password <token> --store-password-in-clear-text
+  dotnet nuget add source https://nuget.pkg.github.com/alpha-software-solutions/index.json --name aspnetdesktop --username <github-user> --password <token> --store-password-in-clear-text
   npm config set //npm.pkg.github.com/:_authToken <token>
   ```
-- **npm names must be scoped** on GitHub Packages, so the client is published as `@nebulora-org/aspnetdesktop-client`. Apps install it under its usual name with an alias (`"aspnetdesktop-client": "npm:@nebulora-org/aspnetdesktop-client@^x.y.z"`), so imports don't change. While `PUBLISH_NPMJS` is off, the templates are packed that way, with a `ClientApp/.npmrc` that routes the scope to GitHub Packages.
+- **npm names must be scoped** on GitHub Packages, so the client is published as `@alpha-software-solutions/aspnetdesktop-client`. Apps install it under its usual name with an alias (`"aspnetdesktop-client": "npm:@alpha-software-solutions/aspnetdesktop-client@^x.y.z"`), so imports don't change. While `PUBLISH_NPMJS` is off, the templates are packed that way, with a `ClientApp/.npmrc` that routes the scope to GitHub Packages.
 - **No symbol server**: GitHub Packages doesn't host `.snupkg` files. They're attached to the GitHub Release, and Source Link still maps to the sources.
 
 ### nuget.org and npmjs.com (opt-in)
@@ -61,15 +61,15 @@ Nothing to set up: the workflow publishes with its own `GITHUB_TOKEN`. Packages 
 Turn each registry on with a repository variable once its credentials (below) are in place:
 
 ```bash
-gh variable set PUBLISH_NUGET_ORG --repo nebulora-org/aspnet-desktop --body true
-gh variable set PUBLISH_NPMJS --repo nebulora-org/aspnet-desktop --body true
+gh variable set PUBLISH_NUGET_ORG --repo alpha-software-solutions/aspnet-desktop --body true
+gh variable set PUBLISH_NPMJS --repo alpha-software-solutions/aspnet-desktop --body true
 ```
 
 With `PUBLISH_NPMJS` on, the templates reference `aspnetdesktop-client` from npmjs.com again (no alias, no `.npmrc`), so the client has to be on npmjs.com before the next NuGet release goes out. To put releases that already exist on a newly enabled registry, publish them again, the client first:
 
 ```bash
-gh workflow run release.yml --repo nebulora-org/aspnet-desktop -f publish=aspnetdesktop-client
-gh workflow run release.yml --repo nebulora-org/aspnet-desktop -f publish=AspNetDesktop
+gh workflow run release.yml --repo alpha-software-solutions/aspnet-desktop -f publish=aspnetdesktop-client
+gh workflow run release.yml --repo alpha-software-solutions/aspnet-desktop -f publish=AspNetDesktop
 ```
 
 Versions that are already on a registry are skipped.
@@ -81,13 +81,13 @@ These publish jobs run in the `release` environment, which only accepts deployme
 **Trusted publishing (recommended, no long-lived secrets)**
 
 1. On nuget.org, go to your account → **Trusted Publishing** → **Create**, with:
-   - Repository owner: `nebulora-org`
+   - Repository owner: `alpha-software-solutions`
    - Repository: `aspnet-desktop`
    - Workflow file: `release.yml`
    - Environment: `release`
 2. Store your nuget.org **username** (not email) as a repository variable:
    ```bash
-   gh variable set NUGET_USER --repo nebulora-org/aspnet-desktop --body "<nuget.org username>"
+   gh variable set NUGET_USER --repo alpha-software-solutions/aspnet-desktop --body "<nuget.org username>"
    ```
 
 **API key**
@@ -95,7 +95,7 @@ These publish jobs run in the `release` environment, which only accepts deployme
 Create a key on nuget.org with *Push new packages and package versions* for the glob `AlphaSoftware.AspNetDesktop*`, then:
 
 ```bash
-gh secret set NUGET_API_KEY --repo nebulora-org/aspnet-desktop --env release
+gh secret set NUGET_API_KEY --repo alpha-software-solutions/aspnet-desktop --env release
 ```
 
 When `NUGET_USER` is set, the workflow uses trusted publishing; otherwise it falls back to `NUGET_API_KEY`.
@@ -106,9 +106,9 @@ npm trusted publishing can only be configured once the package exists, so the fi
 
 1. On npmjs.com, go to your avatar → **Access Tokens** → **Generate New Token**, and create a token with *Bypass two-factor authentication* enabled, **Packages and scopes** set to *Read and write* for *All packages* (the package doesn't exist yet, so you can't select it), no organizations, and a short expiration. Then:
    ```bash
-   gh secret set NPM_TOKEN --repo nebulora-org/aspnet-desktop --env release
+   gh secret set NPM_TOKEN --repo alpha-software-solutions/aspnet-desktop --env release
    ```
-2. A new trusted publisher expires unless a publish uses it within 2 days, and publishing an existing version again doesn't count (it's skipped). So add it just before you merge the next client release PR: open the package on npmjs.com → **Settings** → **Trusted Publisher** → GitHub Actions with owner `nebulora-org`, repository `aspnet-desktop`, workflow `release.yml`, environment `release`. npm prefers trusted publishing over the token when both are set. Once that release is out, delete the `NPM_TOKEN` secret and the token, and optionally set the package to require 2FA and disallow tokens. If the configuration expired, delete it and add it again.
+2. A new trusted publisher expires unless a publish uses it within 2 days, and publishing an existing version again doesn't count (it's skipped). So add it just before you merge the next client release PR: open the package on npmjs.com → **Settings** → **Trusted Publisher** → GitHub Actions with owner `alpha-software-solutions`, repository `aspnet-desktop`, workflow `release.yml`, environment `release`. npm prefers trusted publishing over the token when both are set. Once that release is out, delete the `NPM_TOKEN` secret and the token, and optionally set the package to require 2FA and disallow tokens. If the configuration expired, delete it and add it again.
 
 ## When something fails
 

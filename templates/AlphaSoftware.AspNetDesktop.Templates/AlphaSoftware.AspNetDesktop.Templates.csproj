@@ -25,7 +25,7 @@
       serves scoped packages, so there the dependency is an alias to @owner/aspnetdesktop-client and imports stay the same.
     -->
     <TemplateNpmRegistry Condition="'$(TemplateNpmRegistry)' == ''">npmjs</TemplateNpmRegistry>
-    <GitHubPackagesOwner>nebulora-org</GitHubPackagesOwner>
+    <GitHubPackagesOwner>alpha-software-solutions</GitHubPackagesOwner>
   </PropertyGroup>
 
   <ItemGroup>
