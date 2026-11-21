@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    End-to-end check of the platform adapter for the current OS: opens a real window and system WebView, runs fetch()
+    against app:// and ipc:// from JavaScript (using the real aspnetdesktop-client build), reports the results back over
+    ipc:// and exits with 0 (pass) or 1 (fail). Requires `npm run build:client` first.
+      Windows/Linux: dotnet run -project tests/AlphaSoftware.AspNetDesktop.SmokeTests   (headless Linux: prefix with xvfb-run -a)
+      macOS:         run bin/<config>/net10.0-macos/AlphaSoftware.AspNetDesktop.SmokeTests.app/Contents/MacOS/AlphaSoftware.AspNetDesktop.SmokeTests
+  -->
+  <PropertyGroup>
+    <TargetFramework Condition="$([MSBuild]::IsOSPlatform('Windows'))">net10.0-windows</TargetFramework>
+    <TargetFramework Condition="$([MSBuild]::IsOSPlatform('OSX'))">net10.0-macos</TargetFramework>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net10.0-macos'">14.0</SupportedOSPlatformVersion>
+    <!-- macOS app builds enable the trim analyzer. These apps aren't trimmed (TrimMode=copy on macOS) and MVC isn't trimmable. -->
+    <EnableTrimAnalyzer Condition="'$(TargetFramework)' == 'net10.0-macos'">false</EnableTrimAnalyzer>
+    <IsPackable>false</IsPackable>
+    <ApplicationId>dev.aspnetdesktop.smoketests</ApplicationId>
+    <ApplicationTitle>AspNetDesktop smoke test</ApplicationTitle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="..\..\src\AlphaSoftware.AspNetDesktop\AlphaSoftware.AspNetDesktop.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.AspNetCore.Builder" />
+    <Using Include="Microsoft.AspNetCore.Http" />
+    <Using Include="Microsoft.Extensions.Configuration" />
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Same as the templates: next to the executable (Contents/MonoBundle on macOS, via AlphaSoftware.AspNetDesktop.Mac.targets). -->
+    <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <!-- CopyToPublishDirectory also puts the files into the macOS .app bundle (Contents/Resources). -->
+    <Content Include="wwwroot\**" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\src\client\dist\**\*.js" Link="wwwroot\client\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Import Project="..\..\src\AlphaSoftware.AspNetDesktop.Windows\buildTransitive\AlphaSoftware.AspNetDesktop.Windows.targets" Condition="'$(TargetFramework)' == 'net10.0-windows'" />
+  <Import Project="..\..\src\AlphaSoftware.AspNetDesktop.Mac\buildTransitive\AlphaSoftware.AspNetDesktop.Mac.targets" Condition="'$(TargetFramework)' == 'net10.0-macos'" />
+
+</Project>

@@ -19,22 +19,22 @@ Thanks for helping! Issues, ideas and pull requests are all welcome. Please foll
 
 ```
 src/
-  AspNetDesktop.Hosting/      IServer, options, policy, AddDesktopHost, CreateClient, RunDesktop(platform)
-  AspNetDesktop.Windows/      net10.0-windows: WinForms + WebView2
-  AspNetDesktop.Mac/          net10.0-macos: NSWindow + WKWebView
-  AspNetDesktop.Linux/        net10.0: GTK 4 + WebKitGTK 6 (GirCore)
-  AspNetDesktop/              metapackage: RunDesktop() picks the adapter for the target framework
-  client/                     aspnetdesktop-client (core client + Angular, React and Vue integrations)
+  AlphaSoftware.AspNetDesktop.Hosting/        IServer, options, policy, AddDesktopHost, CreateClient, RunDesktop(platform)
+  AlphaSoftware.AspNetDesktop.Windows/        net10.0-windows: WinForms + WebView2
+  AlphaSoftware.AspNetDesktop.Mac/            net10.0-macos: NSWindow + WKWebView
+  AlphaSoftware.AspNetDesktop.Linux/          net10.0: GTK 4 + WebKitGTK 6 (GirCore)
+  AlphaSoftware.AspNetDesktop/                metapackage: RunDesktop() picks the adapter for the target framework
+  client/                                     aspnetdesktop-client (core client + Angular, React and Vue integrations)
 samples/
-  AngularApp/                 Angular 22 + [ApiController] + minimal API   (also the aspnetdesktop-angular template)
-  ReactApp/                   React 19 + Vite + the same API               (also the aspnetdesktop-react template)
-  VueApp/                     Vue 3 + Vite + the same API                  (also the aspnetdesktop-vue template)
+  AngularApp/                                 Angular 22 + [ApiController] + minimal API   (also the aspnetdesktop-angular template)
+  ReactApp/                                   React 19 + Vite + the same API               (also the aspnetdesktop-react template)
+  VueApp/                                     Vue 3 + Vite + the same API                  (also the aspnetdesktop-vue template)
 templates/
-  AspNetDesktop.Templates/    packs the samples as dotnet new templates
+  AlphaSoftware.AspNetDesktop.Templates/      packs the samples as dotnet new templates
 tests/
-  AspNetDesktop.Hosting.Tests/   pipeline + security tests through CreateClient (no WebView)
-  AspNetDesktop.SmokeTests/      real window + system WebView on the current OS, fetch() checks against app:// and ipc://
-docs/                         platform notes, releasing, original design document
+  AlphaSoftware.AspNetDesktop.Hosting.Tests/  pipeline + security tests through CreateClient (no WebView)
+  AlphaSoftware.AspNetDesktop.SmokeTests/     real window + system WebView on the current OS, fetch() checks against app:// and ipc://
+docs/                                         platform notes, releasing, original design document
 ```
 
 ## Build and test
@@ -50,23 +50,23 @@ dotnet test --solution AspNetDesktop.slnx    # Hosting tests: no WebView needed
 
 ### End-to-end smoke test
 
-`tests/AspNetDesktop.SmokeTests` opens a real window on the current OS, runs `fetch()` checks against `app://` and `ipc://` from JavaScript and exits with `0` (pass) or `1` (fail). CI runs it on Windows, Linux and macOS.
+`tests/AlphaSoftware.AspNetDesktop.SmokeTests` opens a real window on the current OS, runs `fetch()` checks against `app://` and `ipc://` from JavaScript and exits with `0` (pass) or `1` (fail). CI runs it on Windows, Linux and macOS.
 
 ```bash
 npm run build:client
-dotnet run --project tests/AspNetDesktop.SmokeTests            # Windows, or Linux with a display
-xvfb-run -a dotnet run --project tests/AspNetDesktop.SmokeTests # Linux without a display
+dotnet run --project tests/AlphaSoftware.AspNetDesktop.SmokeTests            # Windows, or Linux with a display
+xvfb-run -a dotnet run --project tests/AlphaSoftware.AspNetDesktop.SmokeTests # Linux without a display
 
 # macOS: `dotnet run` hands app bundles to `open` and doesn't wait, so run the bundle's executable:
-dotnet build tests/AspNetDesktop.SmokeTests
-"$(find tests/AspNetDesktop.SmokeTests/bin/Debug/net10.0-macos -maxdepth 2 -name '*.app' | head -n 1)/Contents/MacOS/AspNetDesktop.SmokeTests"
+dotnet build tests/AlphaSoftware.AspNetDesktop.SmokeTests
+"$(find tests/AlphaSoftware.AspNetDesktop.SmokeTests/bin/Debug/net10.0-macos -maxdepth 2 -name '*.app' | head -n 1)/Contents/MacOS/AlphaSoftware.AspNetDesktop.SmokeTests"
 ```
 
 If you change an adapter, run the smoke test on that OS.
 
 ### Samples and templates
 
-The samples double as the `dotnet new` templates (`samples/*/.template.config`). Inside this repository, `samples/Directory.Build.targets` points them at the source projects and the npm workspace; the templates package (`templates/AspNetDesktop.Templates`) copies them without that file and stamps the package version in.
+The samples double as the `dotnet new` templates (`samples/*/.template.config`). Inside this repository, `samples/Directory.Build.targets` points them at the source projects and the npm workspace; the templates package (`templates/AlphaSoftware.AspNetDesktop.Templates`) copies them without that file and stamps the package version in.
 
 ```bash
 dotnet run --project samples/AngularApp -c Release              # built UI from app://
@@ -76,8 +76,8 @@ npm run start:react & dotnet run --project samples/ReactApp     # Debug + Vite h
 `dotnet new` evaluates `#if` in `.cs` files as its own template conditions and strips the directives from the generated app. Wrap real preprocessor directives in `//-:cnd:noEmit` and `//+:cnd:noEmit` lines (see `Program.cs`), and don't write that marker anywhere else in a template file, comments included. To check the output, pack the templates and instantiate one:
 
 ```bash
-dotnet pack templates/AspNetDesktop.Templates -c Release -o artifacts -p:SkipClientBuild=true
-dotnet new install ./artifacts/AspNetDesktop.Templates.*.nupkg --debug:custom-hive /tmp/template-hive
+dotnet pack templates/AlphaSoftware.AspNetDesktop.Templates -c Release -o artifacts -p:SkipClientBuild=true
+dotnet new install ./artifacts/AlphaSoftware.AspNetDesktop.Templates.*.nupkg --debug:custom-hive /tmp/template-hive
 dotnet new aspnetdesktop-vue -o /tmp/MyApp --debug:custom-hive /tmp/template-hive
 ```
 
@@ -104,7 +104,7 @@ Commit messages and pull request titles follow [Conventional Commits](https://ww
 ## Pull requests
 
 - Keep changes focused; one topic per PR.
-- Add or update tests: Hosting behavior goes in `tests/AspNetDesktop.Hosting.Tests`, client behavior in `src/client/test`, WebView behavior in the smoke test.
+- Add or update tests: Hosting behavior goes in `tests/AlphaSoftware.AspNetDesktop.Hosting.Tests`, client behavior in `src/client/test`, WebView behavior in the smoke test.
 - Public APIs need XML docs. Builds treat warnings as errors.
 - Match the existing style (`.editorconfig`); file-scoped namespaces, explicit types where the codebase uses them.
 - Don't edit `CHANGELOG.md`: release-please writes the changelogs from commit messages, so describe user-visible changes in a `feat` or `fix` commit. See [docs/releasing.md](docs/releasing.md).

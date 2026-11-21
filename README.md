@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/nebulora-org/aspnet-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/nebulora-org/aspnet-desktop/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/nebulora-org/aspnet-desktop?include_prereleases&logo=github&label=release)](https://github.com/nebulora-org/aspnet-desktop/releases)
-[![NuGet](https://img.shields.io/nuget/v/AspNetDesktop?logo=nuget&label=nuget)](https://www.nuget.org/packages/AspNetDesktop)
+[![NuGet](https://img.shields.io/nuget/v/AlphaSoftware.AspNetDesktop?logo=nuget&label=nuget)](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop)
 [![npm](https://img.shields.io/npm/v/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/aspnetdesktop-client)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nebulora-org/aspnet-desktop/blob/master/LICENSE)
 
@@ -43,7 +43,7 @@ flowchart LR
 The templates (Angular, React or Vue) come with the build wiring and hot reload set up:
 
 ```bash
-dotnet new install AspNetDesktop.Templates
+dotnet new install AlphaSoftware.AspNetDesktop.Templates
 dotnet new aspnetdesktop-vue -o MyApp          # or: aspnetdesktop-angular, aspnetdesktop-react
 cd MyApp
 dotnet run -c Release                           # builds the UI into wwwroot and opens the window
@@ -59,7 +59,7 @@ dotnet run                                      # from MyApp, in a second termin
 ### Add to an existing project
 
 ```bash
-dotnet add package AspNetDesktop
+dotnet add package AlphaSoftware.AspNetDesktop
 npm install aspnetdesktop-client                # in your frontend
 ```
 
@@ -150,7 +150,7 @@ All clients resolve against `window.__ASPNETDESKTOP__.ipcBase` (injected by the 
 
 ## How it works
 
-- **`DesktopServer`** (`AspNetDesktop.Hosting`) implements `IServer`. `StartAsync` binds nothing; it keeps the `IHttpApplication<TContext>`. Each request gets its own `IFeatureCollection` (request, buffered response with `OnStarting`/`OnCompleted`, body, lifetime, identifier) and runs through the normal pipeline. Everything above `IServer` works unchanged.
+- **`DesktopServer`** (`AlphaSoftware.AspNetDesktop.Hosting`) implements `IServer`. `StartAsync` binds nothing; it keeps the `IHttpApplication<TContext>`. Each request gets its own `IFeatureCollection` (request, buffered response with `OnStarting`/`OnCompleted`, body, lifetime, identifier) and runs through the normal pipeline. Everything above `IServer` works unchanged.
 - **Adapters** turn native WebView requests into `DesktopHttpRequest` and call one method:
   ```csharp
   Task<DesktopHttpResponse> ProcessAsync(DesktopHttpRequest request, CancellationToken ct);
@@ -205,11 +205,13 @@ If your app is started from another working directory, `AddDesktopHost()` falls 
 
 | Package | |
 |---|---|
-| [`AspNetDesktop`](https://www.nuget.org/packages/AspNetDesktop) | Metapackage: Hosting + the adapter for your target framework, and `app.RunDesktop()` |
-| [`AspNetDesktop.Hosting`](https://www.nuget.org/packages/AspNetDesktop.Hosting) | `DesktopServer`, options, isolation policy, `AddDesktopHost()`, `CreateClient()`; no UI dependencies |
-| [`AspNetDesktop.Windows`](https://www.nuget.org/packages/AspNetDesktop.Windows) / [`.Mac`](https://www.nuget.org/packages/AspNetDesktop.Mac) / [`.Linux`](https://www.nuget.org/packages/AspNetDesktop.Linux) | Platform adapters |
-| [`AspNetDesktop.Templates`](https://www.nuget.org/packages/AspNetDesktop.Templates) | `dotnet new aspnetdesktop-angular`, `aspnetdesktop-react` and `aspnetdesktop-vue` |
+| [`AlphaSoftware.AspNetDesktop`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop) | Metapackage: Hosting + the adapter for your target framework, and `app.RunDesktop()` |
+| [`AlphaSoftware.AspNetDesktop.Hosting`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Hosting) | `DesktopServer`, options, isolation policy, `AddDesktopHost()`, `CreateClient()`; no UI dependencies |
+| [`AlphaSoftware.AspNetDesktop.Windows`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Windows) / [`.Mac`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Mac) / [`.Linux`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Linux) | Platform adapters |
+| [`AlphaSoftware.AspNetDesktop.Templates`](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop.Templates) | `dotnet new aspnetdesktop-angular`, `aspnetdesktop-react` and `aspnetdesktop-vue` |
 | [`aspnetdesktop-client`](https://www.npmjs.com/package/aspnetdesktop-client) (npm) | `DesktopHttpClient` for Angular, a provider and hook for React, a plugin and composable for Vue, and `createDesktopHttpClient()` for everything else |
+
+Until 0.1.3 the NuGet packages were published without the `AlphaSoftware.` prefix (`AspNetDesktop`, `AspNetDesktop.Hosting`, ...). Those packages are deprecated. To move to the new ones, replace the package references, uninstall the old templates (`dotnet new uninstall AspNetDesktop.Templates`), and change `using AspNetDesktop...` to `using AlphaSoftware.AspNetDesktop...`. `AddDesktopHost()` and `RunDesktop()` are in the ASP.NET Core namespaces, so most apps need no other code changes.
 
 Every release is also on [GitHub Packages](https://github.com/orgs/nebulora-org/packages?repo_name=aspnet-desktop), where the client is scoped as `@nebulora-org/aspnetdesktop-client`. Releases from before the project moved to nebulora-org (up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1) stay under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop) as `@armanossiloko/aspnetdesktop-client`.
 

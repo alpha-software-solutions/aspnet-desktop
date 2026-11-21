@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="AspNetDesktop" Version="0.1.0" />
+    <PackageReference Include="AlphaSoftware.AspNetDesktop" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>

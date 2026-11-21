@@ -8,7 +8,7 @@ The repository releases two components, each with its own version, tag, changelo
 
 | Component | Packages | Changes counted | Tag | Changelog |
 |---|---|---|---|---|
-| `AspNetDesktop` | `AspNetDesktop`, `.Hosting`, `.Windows`, `.Mac`, `.Linux`, `.Templates` (NuGet) | everything outside `src/client` | `AspNetDesktop-v1.2.3` | [`CHANGELOG.md`](../CHANGELOG.md) |
+| `AspNetDesktop` | `AlphaSoftware.AspNetDesktop`, `.Hosting`, `.Windows`, `.Mac`, `.Linux`, `.Templates` (NuGet) | everything outside `src/client` | `AspNetDesktop-v1.2.3` | [`CHANGELOG.md`](../CHANGELOG.md) |
 | `aspnetdesktop-client` | `aspnetdesktop-client` (npm) | `src/client` | `aspnetdesktop-client-v1.2.3` | [`src/client/CHANGELOG.md`](../src/client/CHANGELOG.md) |
 
 A change to the npm client releases only the npm package, and a change to the .NET side (including the samples the templates are built from) releases only the NuGet packages. A commit that touches both counts for both.
@@ -92,7 +92,7 @@ These publish jobs run in the `release` environment, which only accepts deployme
 
 **API key**
 
-Create a key on nuget.org with *Push new packages and package versions* for the glob `AspNetDesktop*`, then:
+Create a key on nuget.org with *Push new packages and package versions* for the glob `AlphaSoftware.AspNetDesktop*`, then:
 
 ```bash
 gh secret set NUGET_API_KEY --repo nebulora-org/aspnet-desktop --env release
