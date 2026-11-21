@@ -215,7 +215,7 @@ Until 0.1.3 the NuGet packages were published without the `AlphaSoftware.` prefi
 
 Until 0.1.1 the npm client was published as `aspnetdesktop-client`, which is deprecated too. Install `@alpha-software/aspnetdesktop-client` instead and change the imports (`'aspnetdesktop-client/react'` becomes `'@alpha-software/aspnetdesktop-client/react'`, and the same for `/angular`, `/vue` and the core entry point). The API is the same.
 
-The NuGet packages are also on [GitHub Packages](https://github.com/orgs/alpha-software-solutions/packages?repo_name=aspnet-desktop); the npm client is only on npmjs.com. Releases from before the project moved to alpha-software-solutions (up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1) stay on GitHub Packages under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop), with the client as `@armanossiloko/aspnetdesktop-client`.
+Packages are published to nuget.org and npmjs.com only. Releases up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1 were also on GitHub Packages, under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop); those copies stay there but get no new versions.
 
 ## Limitations
 

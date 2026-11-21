@@ -214,29 +214,19 @@ jobs:
           path: artifacts/
           if-no-files-found: error
 
-  nuget-github:
-    name: Publish NuGet packages to GitHub Packages
+  # Packages are published to nuget.org and npmjs.com only, not to GitHub Packages. The GitHub Release still carries
+  # the built packages as downloads.
+  nuget-release-asset:
+    name: Attach NuGet packages to the GitHub Release
     needs: [release-please, pack-nuget]
     runs-on: ubuntu-24.04
     permissions:
       contents: write # attach the packages to the release
-      packages: write
     steps:
       - uses: actions/download-artifact@v8
         with:
           name: nuget-packages
           path: artifacts
-
-      - uses: actions/setup-dotnet@v6
-        with:
-          dotnet-version: 10.0.x
-
-      # GitHub Packages doesn't host symbol packages; the .snupkg files go on the GitHub Release instead.
-      - name: Push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-        run: dotnet nuget push "artifacts/*.nupkg" --source "$SOURCE" --api-key "$GITHUB_TOKEN" --skip-duplicate --no-symbols
 
       - name: Attach to the GitHub Release
         env:
@@ -244,8 +234,6 @@ jobs:
           TAG: ${{ needs.release-please.outputs.nuget-tag }}
         run: gh release upload "$TAG" artifacts/*.nupkg artifacts/*.snupkg --clobber --repo "$GITHUB_REPOSITORY"
 
-  # The npm client is only published to npmjs.com (as @alpha-software/aspnetdesktop-client), not to GitHub Packages,
-  # which can only host it under the repository owner's scope. The release still carries the .tgz.
   npm-release-asset:
     name: Attach npm package to the GitHub Release
     needs: [release-please, pack-npm]
@@ -267,7 +255,6 @@ jobs:
   nuget-org:
     name: Publish to nuget.org
     needs: [release-please, pack-nuget]
-    if: vars.PUBLISH_NUGET_ORG == 'true'
     runs-on: ubuntu-24.04
     environment: release
     permissions:

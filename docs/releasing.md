@@ -45,40 +45,23 @@ gh secret set RELEASE_PLEASE_TOKEN --repo alpha-software-solutions/aspnet-deskto
 
 ## Where packages go
 
-| Registry | Packages | Setup |
+| Registry | Packages | Credentials |
 |---|---|---|
-| npmjs.com | `@alpha-software/aspnetdesktop-client` | always; [credentials below](#npm) |
-| nuget.org | `AlphaSoftware.AspNetDesktop*` | opt-in with `PUBLISH_NUGET_ORG`; [credentials below](#nuget-pick-one) |
-| GitHub Packages | `AlphaSoftware.AspNetDesktop*` | always; nothing to set up |
+| nuget.org | `AlphaSoftware.AspNetDesktop*` (with symbol packages) | [below](#nuget-pick-one) |
+| npmjs.com | `@alpha-software/aspnetdesktop-client` | [below](#npm) |
 
-Every release also gets its packages (`.nupkg`, `.snupkg`, `.tgz`) attached to the GitHub Release.
+Nothing is published to GitHub Packages. Every GitHub Release also carries its packages (`.nupkg`, `.snupkg`, `.tgz`) as downloads.
 
-The publish jobs for npmjs.com and nuget.org run in the `release` environment, which only accepts deployments from `master`. To put releases that already exist on a newly enabled registry, publish them again, the client first. Versions that are already on a registry are skipped.
+Both publish jobs run in the `release` environment, which only accepts deployments from `master`. Versions that are already on a registry are skipped, so to publish a release again (for example after its credentials were missing), run the workflow for its component, the client first:
 
 ```bash
 gh workflow run release.yml --repo alpha-software-solutions/aspnet-desktop -f publish=aspnetdesktop-client
 gh workflow run release.yml --repo alpha-software-solutions/aspnet-desktop -f publish=AspNetDesktop
 ```
 
-### GitHub Packages (NuGet only)
-
-The workflow publishes the NuGet packages with its own `GITHUB_TOKEN`. They're linked to this repository through `RepositoryUrl` and are public because the repository is.
-
-- **Consumers need a token** with `read:packages`, even for public packages. Once per machine, create a [personal access token (classic)](https://github.com/settings/tokens/new?scopes=read:packages&description=AspNetDesktop%20packages) with that scope and register it:
-  ```bash
-  # On Windows you can leave out --store-password-in-clear-text (the password is encrypted there).
-  dotnet nuget add source https://nuget.pkg.github.com/alpha-software-solutions/index.json --name aspnetdesktop --username <github-user> --password <token> --store-password-in-clear-text
-  ```
-- **No symbol server**: GitHub Packages doesn't host `.snupkg` files. They're attached to the GitHub Release, and Source Link still maps to the sources.
-- **No npm client**: GitHub Packages only hosts npm packages under the repository owner's scope (`@alpha-software-solutions`), which would give the client a second name. It's published to npmjs.com only. Versions up to 0.1.1 are still on GitHub Packages as `@armanossiloko/aspnetdesktop-client`.
+Releases up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1 were also published to GitHub Packages, under the `armanossiloko` account. Those copies stay there but get no new versions.
 
 ### nuget.org
-
-Turn it on once its credentials (below) are in place:
-
-```bash
-gh variable set PUBLISH_NUGET_ORG --repo alpha-software-solutions/aspnet-desktop --body true
-```
 
 #### NuGet (pick one)
 
