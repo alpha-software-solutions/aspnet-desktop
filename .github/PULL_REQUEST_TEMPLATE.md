@@ -11,6 +11,6 @@
 
 ## Checklist
 
-- [ ] Title and commits follow [Conventional Commits](https://github.com/nebulora-org/aspnet-desktop/blob/master/CONTRIBUTING.md#commit-messages) (`type(scope): description`)
+- [ ] Title and commits follow [Conventional Commits](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/CONTRIBUTING.md#commit-messages) (`type(scope): description`)
 - [ ] Public APIs have XML docs
 - [ ] Docs updated (`README.md`, `docs/`) if behavior or configuration changed

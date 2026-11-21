@@ -1,10 +1,10 @@
 # AspNetDesktop
 
-[![CI](https://github.com/nebulora-org/aspnet-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/nebulora-org/aspnet-desktop/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/nebulora-org/aspnet-desktop?include_prereleases&logo=github&label=release)](https://github.com/nebulora-org/aspnet-desktop/releases)
+[![CI](https://github.com/alpha-software-solutions/aspnet-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/alpha-software-solutions/aspnet-desktop/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/alpha-software-solutions/aspnet-desktop?include_prereleases&logo=github&label=release)](https://github.com/alpha-software-solutions/aspnet-desktop/releases)
 [![NuGet](https://img.shields.io/nuget/v/AlphaSoftware.AspNetDesktop?logo=nuget&label=nuget)](https://www.nuget.org/packages/AlphaSoftware.AspNetDesktop)
 [![npm](https://img.shields.io/npm/v/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/aspnetdesktop-client)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nebulora-org/aspnet-desktop/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE)
 
 Build desktop apps with an **ASP.NET Core backend** and **any JavaScript UI** (Angular, React, Vue, ...), Tauri-style — but with .NET instead of Rust, and with real MVC instead of `invoke('command')`.
 
@@ -33,7 +33,7 @@ flowchart LR
 ### Prerequisites
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) and [Node.js](https://nodejs.org/) 22 or later.
-- The system WebView for your OS (see [docs/platforms.md](https://github.com/nebulora-org/aspnet-desktop/blob/master/docs/platforms.md)):
+- The system WebView for your OS (see [docs/platforms.md](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/docs/platforms.md)):
   - **Windows**: the WebView2 Runtime, already installed on Windows 11 and current Windows 10.
   - **macOS** 14+: `dotnet workload install macos` and the Xcode version that workload asks for.
   - **Linux**: GTK 4 and WebKitGTK 6, e.g. `sudo apt install libgtk-4-1 libwebkitgtk-6.0-4` on Ubuntu 24.04+.
@@ -75,7 +75,7 @@ app.MapFallbackToFile("index.html");
 app.RunDesktop();                  // opens the window; returns when it closes
 ```
 
-The target framework selects the adapter: `net10.0-windows` uses WebView2, `net10.0-macos` uses WKWebView, and `net10.0` on Linux uses WebKitGTK 6 ([platform notes](https://github.com/nebulora-org/aspnet-desktop/blob/master/docs/platforms.md)). The templates pick it per OS like this:
+The target framework selects the adapter: `net10.0-windows` uses WebView2, `net10.0-macos` uses WKWebView, and `net10.0` on Linux uses WebKitGTK 6 ([platform notes](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/docs/platforms.md)). The templates pick it per OS like this:
 
 ```xml
 <TargetFramework Condition="$([MSBuild]::IsOSPlatform('Windows'))">net10.0-windows</TargetFramework>
@@ -85,7 +85,7 @@ The target framework selects the adapter: `net10.0-windows` uses WebView2, `net1
 
 ## Two clients: real HTTP vs the in-process API
 
-The framework never patches `fetch` or Angular's `HttpClient`. Real HTTP stays real; the desktop API gets its own client from [`aspnetdesktop-client`](https://github.com/nebulora-org/aspnet-desktop/tree/master/src/client).
+The framework never patches `fetch` or Angular's `HttpClient`. Real HTTP stays real; the desktop API gets its own client from [`aspnetdesktop-client`](https://github.com/alpha-software-solutions/aspnet-desktop/tree/master/src/client).
 
 **Angular**
 
@@ -213,7 +213,7 @@ If your app is started from another working directory, `AddDesktopHost()` falls 
 
 Until 0.1.3 the NuGet packages were published without the `AlphaSoftware.` prefix (`AspNetDesktop`, `AspNetDesktop.Hosting`, ...). Those packages are deprecated. To move to the new ones, replace the package references, uninstall the old templates (`dotnet new uninstall AspNetDesktop.Templates`), and change `using AspNetDesktop...` to `using AlphaSoftware.AspNetDesktop...`. `AddDesktopHost()` and `RunDesktop()` are in the ASP.NET Core namespaces, so most apps need no other code changes.
 
-Every release is also on [GitHub Packages](https://github.com/orgs/nebulora-org/packages?repo_name=aspnet-desktop), where the client is scoped as `@nebulora-org/aspnetdesktop-client`. Releases from before the project moved to nebulora-org (up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1) stay under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop) as `@armanossiloko/aspnetdesktop-client`.
+Every release is also on [GitHub Packages](https://github.com/orgs/alpha-software-solutions/packages?repo_name=aspnet-desktop), where the client is scoped as `@alpha-software-solutions/aspnetdesktop-client`. Releases from before the project moved to alpha-software-solutions (up to `AspNetDesktop` 0.1.3 and `aspnetdesktop-client` 0.1.1) stay under [armanossiloko](https://github.com/armanossiloko?tab=packages&repo_name=aspnet-desktop) as `@armanossiloko/aspnetdesktop-client`.
 
 ## Limitations
 
@@ -223,14 +223,14 @@ Every release is also on [GitHub Packages](https://github.com/orgs/nebulora-org/
 
 ## Contributing
 
-Issues and pull requests are welcome. [CONTRIBUTING.md](https://github.com/nebulora-org/aspnet-desktop/blob/master/CONTRIBUTING.md) covers building from source, the samples and the tests; report security issues privately as described in [SECURITY.md](https://github.com/nebulora-org/aspnet-desktop/blob/master/SECURITY.md). Release notes are on the [releases page](https://github.com/nebulora-org/aspnet-desktop/releases) and in the changelogs for the [NuGet packages](https://github.com/nebulora-org/aspnet-desktop/blob/master/CHANGELOG.md) and the [npm client](https://github.com/nebulora-org/aspnet-desktop/blob/master/src/client/CHANGELOG.md).
+Issues and pull requests are welcome. [CONTRIBUTING.md](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/CONTRIBUTING.md) covers building from source, the samples and the tests; report security issues privately as described in [SECURITY.md](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/SECURITY.md). Release notes are on the [releases page](https://github.com/alpha-software-solutions/aspnet-desktop/releases) and in the changelogs for the [NuGet packages](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/CHANGELOG.md) and the [npm client](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/src/client/CHANGELOG.md).
 
 ## License
 
-[MIT](https://github.com/nebulora-org/aspnet-desktop/blob/master/LICENSE), copyright Arman Ossi Loko.
+[MIT](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE), copyright Alpha Software Solutions.
 
 Apps created from the templates credit the project in their footer:
 
-> Built with [AspNetDesktop](https://github.com/nebulora-org/aspnet-desktop) by Arman Ossi Loko
+> Built with [AspNetDesktop](https://github.com/alpha-software-solutions/aspnet-desktop) by Alpha Software Solutions
 
 Keeping it is appreciated but not required.

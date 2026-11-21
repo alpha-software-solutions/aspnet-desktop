@@ -1,9 +1,9 @@
 # aspnetdesktop-client
 
 [![npm](https://img.shields.io/npm/v/aspnetdesktop-client?logo=npm)](https://www.npmjs.com/package/aspnetdesktop-client)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nebulora-org/aspnet-desktop/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alpha-software-solutions/aspnet-desktop/blob/master/LICENSE)
 
-The frontend half of [AspNetDesktop](https://github.com/nebulora-org/aspnet-desktop#readme), which runs an ASP.NET Core backend in-process behind a system WebView, with no port. `DesktopHttpClient` makes HTTP-shaped calls from the UI to that backend over `ipc://localhost`.
+The frontend half of [AspNetDesktop](https://github.com/alpha-software-solutions/aspnet-desktop#readme), which runs an ASP.NET Core backend in-process behind a system WebView, with no port. `DesktopHttpClient` makes HTTP-shaped calls from the UI to that backend over `ipc://localhost`.
 
 It is a **separate client**. It never wraps or replaces the global `fetch` or Angular's `HttpClient`; those keep doing real HTTP. Outside an AspNetDesktop window there's no `ipc://` backend to call.
 
@@ -12,7 +12,7 @@ It is a **separate client**. It never wraps or replaces the global `fetch` or An
 The quickest start is a template, which sets up the .NET app, the frontend and this package:
 
 ```bash
-dotnet new install AspNetDesktop.Templates
+dotnet new install AlphaSoftware.AspNetDesktop.Templates
 dotnet new aspnetdesktop-vue -o MyApp          # or: aspnetdesktop-angular, aspnetdesktop-react
 ```
 

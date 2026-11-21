@@ -4,7 +4,7 @@ labels: [bug]
 body:
   - type: markdown
     attributes:
-      value: Thanks for taking the time to report this! Security issues go through [private reporting](https://github.com/nebulora-org/aspnet-desktop/security/advisories/new) instead.
+      value: Thanks for taking the time to report this! Security issues go through [private reporting](https://github.com/alpha-software-solutions/aspnet-desktop/security/advisories/new) instead.
   - type: textarea
     id: what-happened
     attributes:

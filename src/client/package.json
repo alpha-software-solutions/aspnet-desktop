@@ -3,15 +3,15 @@
   "version": "0.1.1",
   "description": "DesktopHttpClient: isolated, HTTP-shaped calls from the WebView UI to the in-process ASP.NET Core API over ipc://localhost, with Angular, React and Vue integrations. Never touches the global fetch or Angular's HttpClient.",
   "license": "MIT",
-  "author": "Arman Ossi Loko",
-  "homepage": "https://github.com/nebulora-org/aspnet-desktop/tree/master/src/client#readme",
+  "author": "Alpha Software Solutions",
+  "homepage": "https://github.com/alpha-software-solutions/aspnet-desktop/tree/master/src/client#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nebulora-org/aspnet-desktop.git",
+    "url": "git+https://github.com/alpha-software-solutions/aspnet-desktop.git",
     "directory": "src/client"
   },
   "bugs": {
-    "url": "https://github.com/nebulora-org/aspnet-desktop/issues"
+    "url": "https://github.com/alpha-software-solutions/aspnet-desktop/issues"
   },
   "type": "module",
   "sideEffects": false,
