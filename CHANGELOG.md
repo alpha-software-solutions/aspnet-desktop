@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/alpha-software-solutions/aspnet-desktop/compare/AspNetDesktop-v0.1.3...AspNetDesktop-v0.2.0) (2026-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **client:** publish the client as @alpha-software/aspnetdesktop-client ([#37](https://github.com/alpha-software-solutions/aspnet-desktop/issues/37))
+* rename the NuGet packages and namespaces to AlphaSoftware.AspNetDesktop ([#34](https://github.com/alpha-software-solutions/aspnet-desktop/issues/34))
+
+### Features
+
+* **client:** publish the client as @alpha-software/aspnetdesktop-client ([#37](https://github.com/alpha-software-solutions/aspnet-desktop/issues/37)) ([3724391](https://github.com/alpha-software-solutions/aspnet-desktop/commit/37243916d3aad81246cf3447e715430b2d50c900))
+* rename the NuGet packages and namespaces to AlphaSoftware.AspNetDesktop ([#34](https://github.com/alpha-software-solutions/aspnet-desktop/issues/34)) ([dff9d4a](https://github.com/alpha-software-solutions/aspnet-desktop/commit/dff9d4af16192eb8111a5af6386c4d7fafd8840e))
+
 ## [0.1.3](https://github.com/armanossiloko/aspnet-desktop/compare/AspNetDesktop-v0.1.2...AspNetDesktop-v0.1.3) (2026-10-23)
 
 
