@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/alpha-software-solutions/aspnet-desktop/compare/aspnetdesktop-client-v0.1.1...aspnetdesktop-client-v0.2.0) (2026-11-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **client:** publish the client as @alpha-software/aspnetdesktop-client ([#37](https://github.com/alpha-software-solutions/aspnet-desktop/issues/37))
+
+### Features
+
+* **client:** publish the client as @alpha-software/aspnetdesktop-client ([#37](https://github.com/alpha-software-solutions/aspnet-desktop/issues/37)) ([3724391](https://github.com/alpha-software-solutions/aspnet-desktop/commit/37243916d3aad81246cf3447e715430b2d50c900))
+
 ## [0.1.1](https://github.com/armanossiloko/aspnet-desktop/compare/aspnetdesktop-client-v0.1.0...aspnetdesktop-client-v0.1.1) (2026-10-23)
 
 
